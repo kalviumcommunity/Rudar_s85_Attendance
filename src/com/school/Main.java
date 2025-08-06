@@ -1,5 +1,7 @@
 package com.school;
 
+import  java.util.ArrayList;
+import  java.util.List;
 public class Main {
 
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Main {
         Student[] students = new Student[2];
         students[0] = new Student("Rudar");
         students[1] = new Student("Shaurya");
-        System.out.println("Registered Students:");
+        System.out.println("\n--- Registered Students ---");
         for(int i = 0; i < students.length; i++) {
             students[i].displayDetails();
         }
@@ -18,23 +20,21 @@ public class Main {
         Course[] courses = new Course[2];
         courses[0] = new Course("OOPs using JAVA");
         courses[1] = new Course("Data Structures");
-        System.out.println("Available Courses:");
+        System.out.println("\n--- Available Courses ---");
         for(int i = 0; i < courses.length; i++) {
             courses[i].displayDetails();
         }
 
-        // Demonstrate auto-ID generation with new instances
-        System.out.println("\n--- Auto-ID Generation Test ---");
-        System.out.println("Creating one more student and course...");
-        Student student3 = new Student("Charlie Chaplin");
-        Course course3 = new Course("Data Structures");
+        List<AttendanceRecord> attendanceLog = new ArrayList<>();
+        attendanceLog.add(new AttendanceRecord(students[0].getStudentId(), courses[0].getCourseId(), "present"));
+        attendanceLog.add(new AttendanceRecord(students[1].getStudentId(), courses[1].getCourseId(), "Absent"));
+        attendanceLog.add(new AttendanceRecord(students[0].getStudentId(), courses[1].getCourseId(), "Present"));
+        attendanceLog.add(new AttendanceRecord(students[1].getStudentId(), courses[0].getCourseId(), "Not Present"));
 
-        System.out.print("New Student: ");
-        student3.displayDetails();
-        System.out.print("New Course: ");
-        course3.displayDetails();
+        System.out.println("\n--- Attendance Records ---");
+        for (AttendanceRecord record : attendanceLog) {
 
-        System.out.println("\nSession 3: Constructor Initialization & Auto-ID Generation Complete.");
-
+            record.displayRecord();
+        }
     }
 }
